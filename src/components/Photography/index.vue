@@ -119,18 +119,20 @@ export default {
       }
     },
     nextPrevImg(direction) {
-      let idImg = this.getNextImgIndex(idImg, direction);
-      let newImg = this.imageList.find(item => item.id === idImg);
-      this.selectedImgSrc = newImg.path;
-      this.selectedImgId = newImg.id;
-      this.selectedImgTitle = newImg.name;
-      this.imageList.map(value => (value.active = false));
-      newImg.active = true;
-      const modalThumbs = document.getElementById("modal-thumbs");
-      let scrollPos = 50;
-      direction === "next"
-        ? (modalThumbs.scrollLeft += scrollPos)
-        : (modalThumbs.scrollLeft -= scrollPos);
+      if (this.currentCategory === "All") {
+        let idImg = this.getNextImgIndex(idImg, direction);
+        let newImg = this.imageList.find(item => item.id === idImg);
+        this.selectedImgSrc = newImg.path;
+        this.selectedImgId = newImg.id;
+        this.selectedImgTitle = newImg.name;
+        this.selectedCategory = newImg.category;
+        this.imageList.map(value => (value.active = false));
+        newImg.active = true;
+        const modalThumbs = document.getElementById("modal-thumbs");
+        direction === "next"
+          ? (modalThumbs.scrollLeft += 50)
+          : (modalThumbs.scrollLeft -= 50);
+      }
     }
   }
 };
