@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <b-container>
+    <b-container fluid>
       <Photography :imageList="imageList" />
     </b-container>
   </div>
@@ -17,7 +17,6 @@ export default {
   }),
   mounted() {
     this.importAll(require.context("./assets/img/", true, /\.jpg$/));
-    console.log(this.imageList);
   },
   methods: {
     importAll(r) {
@@ -42,3 +41,18 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+@import "./src/assets/styles/_variables.scss";
+html,
+body {
+  height: 100%;
+  background-color: $color1 !important;
+}
+
+#app {
+  max-width: 1920px;
+  width: 100%;
+  margin: auto;
+}
+</style>

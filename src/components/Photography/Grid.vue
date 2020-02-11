@@ -6,9 +6,13 @@
         :src="img.path"
         :title="img.name"
         :id="`thumb-${img.id}`"
-        @click="changeModalContent(img); scrollToPos(img.id)"
+        @click="
+          changeModalContent(img);
+          scrollToPos(img.id);
+        "
         v-lazy="img.path"
-        fluid />
+        fluid
+      />
     </div>
   </section>
 </template>
@@ -21,11 +25,11 @@ export default {
     changeModalContent: Function,
     scrollToPos: Function
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/styles/_variables.scss';
+@import "../../assets/styles/_variables.scss";
 
 section {
   line-height: 0;
@@ -42,7 +46,7 @@ section {
   }
   .img-container {
     width: 100%;
-    
+
     img {
       display: block;
       cursor: pointer;

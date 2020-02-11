@@ -1,14 +1,30 @@
 <template>
   <div id="modal">
-    <p class="title"><span>{{selectedImgTitle}}</span></p>
-    <div class="close-modal"><font-awesome-icon :icon="['fas', 'times-circle']" @click="modalToggle" /></div>
+    <p class="title">
+      <span>{{ selectedImgTitle }}</span>
+    </p>
+    <div class="close-modal">
+      <i class="fas fa-times-circle" @click="modalToggle"></i>
+    </div>
     <div class="modal-inner">
-      <div class="modal-image background-img" :style="'background: url(' + selectedImgSrc + ')'" :key="selectedImgId"></div>
+      <div
+        class="modal-image background-img"
+        :style="'background: url(' + selectedImgSrc + ')'"
+        :key="selectedImgId"
+      ></div>
       <div class="actions">
-        <span v-if="selectedImgId > 0" @click="nextPrevImg('prev')" class="prev">
+        <span
+          v-if="selectedImgId > 0"
+          @click="nextPrevImg('prev')"
+          class="prev"
+        >
           <i class="fas fa-chevron-left"></i>
         </span>
-        <span v-if="(selectedImgId + 1 ) < imageList.length" @click="nextPrevImg('next')" class="next">
+        <span
+          v-if="selectedImgId + 1 < imageList.length"
+          @click="nextPrevImg('next')"
+          class="next"
+        >
           <i class="fas fa-chevron-right"></i>
         </span>
       </div>
@@ -21,8 +37,9 @@
             :style="'background: url(' + img.path + ')'"
             :title="img.name"
             :id="`thumb-${img.id}`"
-            :class="['thumbs-img background-img', {active: img.active}]"
-            @click="changeModalContent(img)"></div>
+            :class="['thumbs-img background-img', { active: img.active }]"
+            @click="changeModalContent(img)"
+          ></div>
         </div>
       </div>
     </div>
@@ -41,20 +58,21 @@ export default {
     modalToggle: Function,
     nextPrevImg: Function
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/styles/_variables.scss';
+@import "../../assets/styles/_variables.scss";
 
 #modal {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   z-index: 1000;
   padding: 2rem;
-  background: rgba(0,0,0,.9);
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,20 +81,21 @@ export default {
     top: 0;
     width: 100%;
     margin: 0;
-    padding: .5rem;
+    padding: 0.5rem;
     text-align: center;
     background: $color1;
+    color: $color2;
     z-index: 2;
   }
   .close-modal {
     position: absolute;
-    top: .2rem;
-    right: .4rem;
+    top: 0.2rem;
+    right: 0.4rem;
     margin: auto;
     font-size: 1.5rem;
     z-index: 3;
     color: $color3;
-    svg {
+    .fas {
       cursor: pointer;
     }
   }
@@ -130,7 +149,7 @@ export default {
     bottom: 1rem;
     width: 500px;
     overflow: hidden;
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
       width: 230px;
     }
   }
@@ -143,12 +162,13 @@ export default {
       width: 50px;
       height: 50px;
       cursor: pointer;
-      opacity: .5;
+      opacity: 0.5;
       margin: 2px;
       border: 2px solid transparent;
-      transition: all .3s ease;
+      transition: all 0.3s ease;
       background-size: cover !important;
-      &:hover, &.active {
+      &:hover,
+      &.active {
         border: 2px solid $color3;
         opacity: 1;
       }
