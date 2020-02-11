@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <Photography :imageList="imageList" />
+    <b-container>
+      <Photography :imageList="imageList" />
+    </b-container>
   </div>
 </template>
 
