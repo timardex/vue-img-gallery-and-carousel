@@ -6,10 +6,10 @@
       <div class="modal-image background-img" :style="'background: url(' + selectedImgSrc + ')'" :key="selectedImgId"></div>
       <div class="actions">
         <span v-if="selectedImgId > 0" @click="nextPrevImg('prev')" class="prev">
-          <font-awesome-icon :icon="['fas', 'chevron-left']" />
+          <i class="fas fa-chevron-left"></i>
         </span>
         <span v-if="(selectedImgId + 1 ) < imageList.length" @click="nextPrevImg('next')" class="next">
-          <font-awesome-icon :icon="['fas', 'chevron-right']" />
+          <i class="fas fa-chevron-right"></i>
         </span>
       </div>
     </div>
