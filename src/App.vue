@@ -15,7 +15,7 @@ export default {
   }),
   mounted() {
     this.importAll(require.context("./assets/img/", true, /\.jpg$/));
-    console.log(this.imageList)
+    console.log(this.imageList);
   },
   methods: {
     importAll(r) {
