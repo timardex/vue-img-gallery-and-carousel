@@ -2,13 +2,7 @@
   <div>
     <b-row>
       <b-col>
-        <b-form-group
-          data-aos="fade-left"
-          data-aos-easing="ease"
-          data-aos-once="true"
-          data-aos-duration="2000"
-          class="btn-filter text-center mt-3"
-        >
+        <b-form-group class="btn-filter text-center mt-3">
           <b-form-radio-group
             id="radio-group-1"
             v-model="currentCategory"
