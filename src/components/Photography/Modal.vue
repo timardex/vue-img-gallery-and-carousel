@@ -55,9 +55,6 @@ export default {
     changeModalContent: Function,
     modalToggle: Function,
     nextPrevImg: Function
-  },
-  mounted() {
-    console.log(this.imageList);
   }
 };
 </script>
