@@ -30,7 +30,7 @@
     <b-row>
       <Grid
         :currentCategory="currentCategory"
-        :imageList="imageList"
+        :imageList="filteredCategory"
         :changeModalContent="changeModalContent"
         :scrollToPos="scrollToPos"
       />
@@ -38,11 +38,10 @@
       <transition name="fade">
         <Modal
           v-if="showModal"
-          :currentCategory="currentCategory"
           :selectedImgSrc="selectedImgSrc"
           :selectedImgTitle="selectedImgTitle"
           :selectedImgId="selectedImgId"
-          :imageList="imageList"
+          :imageList="filteredCategory"
           :changeModalContent="changeModalContent"
           :modalToggle="modalToggle"
           :nextPrevImg="nextPrevImg"
@@ -68,9 +67,10 @@ export default {
       if (this.currentCategory === "All") {
         return this.imageList;
       } else {
-        return this.imageList.filter(
+        let filteredList = this.imageList.filter(
           value => value.category === this.currentCategory
         );
+        return filteredList.map((u, i) => Object.assign({}, u, { id: i + 1 }));
       }
     }
   },
@@ -95,7 +95,7 @@ export default {
     },
     changeModalContent(item) {
       this.showModal = true;
-      this.imageList.map(value => (value.active = false));
+      this.filteredCategory.map(value => (value.active = false));
       item.active = true;
       this.selectedImgSrc = item.path;
       this.selectedImgTitle = item.name;
@@ -119,20 +119,18 @@ export default {
       }
     },
     nextPrevImg(direction) {
-      if (this.currentCategory === "All") {
-        let idImg = this.getNextImgIndex(idImg, direction);
-        let newImg = this.imageList.find(item => item.id === idImg);
-        this.selectedImgSrc = newImg.path;
-        this.selectedImgId = newImg.id;
-        this.selectedImgTitle = newImg.name;
-        this.selectedCategory = newImg.category;
-        this.imageList.map(value => (value.active = false));
-        newImg.active = true;
-        const modalThumbs = document.getElementById("modal-thumbs");
-        direction === "next"
-          ? (modalThumbs.scrollLeft += 50)
-          : (modalThumbs.scrollLeft -= 50);
-      }
+      let idImg = this.getNextImgIndex(idImg, direction);
+      let newImg = this.filteredCategory.find(item => item.id === idImg);
+      this.filteredCategory.map(value => (value.active = false));
+      newImg.active = true;
+      const modalThumbs = document.getElementById("modal-thumbs");
+      direction === "next"
+        ? (modalThumbs.scrollLeft += 50)
+        : (modalThumbs.scrollLeft -= 50);
+      this.selectedImgSrc = newImg.path;
+      this.selectedImgId = newImg.id;
+      this.selectedImgTitle = newImg.name;
+      this.selectedCategory = newImg.category;
     }
   }
 };

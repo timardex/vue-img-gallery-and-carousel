@@ -14,14 +14,14 @@
       ></div>
       <div class="actions">
         <span
-          v-if="selectedImgId > 0"
+          v-if="selectedImgId > 1"
           @click="nextPrevImg('prev')"
           class="prev"
         >
           <i class="fas fa-chevron-left"></i>
         </span>
         <span
-          v-if="selectedImgId + 1 < imageList.length"
+          v-if="selectedImgId < imageList.length"
           @click="nextPrevImg('next')"
           class="next"
         >
@@ -33,7 +33,6 @@
       <div id="modal-thumbs">
         <div v-for="(img, index) in imageList" :key="index">
           <div
-            v-if="currentCategory === img.category || currentCategory === 'All'"
             :style="'background: url(' + img.path + ')'"
             :title="img.name"
             :id="`thumb-${img.id}`"
@@ -49,7 +48,6 @@
 <script>
 export default {
   props: {
-    currentCategory: String,
     selectedImgSrc: String,
     selectedImgTitle: String,
     selectedImgId: Number,
@@ -57,6 +55,9 @@ export default {
     changeModalContent: Function,
     modalToggle: Function,
     nextPrevImg: Function
+  },
+  mounted() {
+    console.log(this.imageList);
   }
 };
 </script>

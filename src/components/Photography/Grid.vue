@@ -2,7 +2,6 @@
   <section>
     <div v-for="(img, index) in imageList" :key="index" class="img-container">
       <b-img
-        v-if="currentCategory === img.category || currentCategory === 'All'"
         :src="img.path"
         :title="img.name"
         :id="`thumb-${img.id}`"

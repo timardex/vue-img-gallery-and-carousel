@@ -33,7 +33,7 @@ export default {
             .replace(".jpg", "")
             .replace(/-/g, " ")
             .replace(/ .*/, ""), // remove './', '.jpg', '-' and get first word as category
-          id: id,
+          id: id + 1,
           active: false
         });
       });
