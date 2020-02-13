@@ -23,7 +23,6 @@
     </b-row>
     <b-row>
       <Grid
-        :currentCategory="currentCategory"
         :imageList="filteredCategory"
         :changeModalContent="changeModalContent"
         :scrollToPos="scrollToPos"

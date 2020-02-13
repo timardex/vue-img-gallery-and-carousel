@@ -19,7 +19,6 @@
 <script>
 export default {
   props: {
-    currentCategory: String,
     imageList: Array,
     changeModalContent: Function,
     scrollToPos: Function
