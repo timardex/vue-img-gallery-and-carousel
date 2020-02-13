@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <b-container fluid>
+    <b-container>
       <Photography :imageList="imageList" v-if="imageList.length" />
       <h4 v-else class="no-images">No image inserted in assets/img folder</h4>
     </b-container>
@@ -53,10 +53,6 @@ body {
 }
 
 #app {
-  max-width: 1920px;
-  width: 100%;
-  margin: auto;
-
   .no-images {
     text-align: center;
     margin-top: 2rem;

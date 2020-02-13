@@ -1,13 +1,12 @@
 <template>
-  <section>
-    <div v-for="(img, index) in imageList" :key="index" class="img-container">
-      <b-img
-        :src="img.path"
-        :title="img.name"
-        :id="`thumb-${img.id}`"
-        v-lazy="img.path"
-        fluid
-      />
+  <section class="col">
+    <div
+      v-for="(img, index) in imageList"
+      :key="index"
+      :style="'background: url(' + img.path + ')'"
+      v-lazy:background-image="img.path"
+      class="img-container col-sm-6 col-md-4"
+    >
       <div
         @click="
           changeModalContent(img);
@@ -41,45 +40,24 @@ export default {
 
 <style lang="scss" scoped>
 section {
-  line-height: 0;
-  column-count: 4;
-  column-gap: 0;
-  @media (max-width: 992px) {
-    column-count: 3;
-  }
-  @media (max-width: 768px) {
-    column-count: 2;
-  }
-  @media (max-width: 500px) {
-    column-count: 1;
-  }
   .img-container {
-    width: 100%;
+    height: 250px;
     position: relative;
+    margin-top: -6px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    transition: all 0.3s ease-in;
+    transition: transform 0.3s ease-in;
     backface-visibility: hidden;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: center center !important;
+
     &:hover {
       transform: scale(1.05);
       z-index: 2;
       .info-overlay {
         opacity: 1;
-      }
-    }
-
-    img {
-      display: block;
-      height: auto !important;
-      z-index: 1;
-      &[lazy="loading"] {
-        width: 50px;
-        margin: 1rem auto;
-      }
-      &[lazy="loaded"] {
-        width: 100% !important;
-        margin: auto;
       }
     }
     .info-overlay {
@@ -93,6 +71,7 @@ section {
       justify-content: center;
       align-items: center;
       cursor: pointer;
+
       span {
         z-index: 2;
         color: #fff;

@@ -9,12 +9,8 @@ Vue.use(BootstrapVue);
 
 // Lazy load images
 import VueLazyload from "vue-lazyload";
-import error from "./assets/svg/loading.svg";
-import loading from "./assets/svg/loading.svg";
 Vue.use(VueLazyload, {
   preLoad: 1,
-  error: error,
-  loading: loading,
   attempt: 1
 });
 
