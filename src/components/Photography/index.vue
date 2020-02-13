@@ -25,7 +25,6 @@
       <Grid
         :imageList="filteredCategory"
         :changeModalContent="changeModalContent"
-        :scrollToPos="scrollToPos"
       />
 
       <transition name="fade">
@@ -47,7 +46,7 @@
 <script>
 import Grid from "@/components/Photography/Grid";
 import Modal from "@/components/Photography/Modal";
-import { categoryFilter, getCat } from "./helpers.js";
+import { categoryFilter, getCat, getIndex } from "./helpers.js";
 
 export default {
   props: {
@@ -86,25 +85,8 @@ export default {
       this.selectedImgTitle = item.name;
       this.selectedImgId = item.id;
     },
-    scrollToPos(id) {
-      setTimeout(() => {
-        const modalThumbs = document.getElementById("modal-thumbs");
-        let scrollPos = id * 50;
-        modalThumbs.scrollLeft += scrollPos;
-      }, 1000);
-    },
-    getNextImgIndex(idImg = this.selectedImgId, direction) {
-      switch (direction) {
-        case "next":
-          return idImg + 1;
-        case "prev":
-          return idImg - 1;
-        default:
-          return idImg;
-      }
-    },
     nextPrevImg(direction) {
-      let idImg = this.getNextImgIndex(idImg, direction);
+      let idImg = getIndex(this.selectedImgId, direction);
       let newImg = this.filteredCategory.find(item => item.id === idImg);
       this.filteredCategory.map(value => (value.active = false));
       newImg.active = true;

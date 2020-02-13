@@ -13,3 +13,14 @@ export const getCat = list => {
   unique.unshift("All");
   return unique;
 };
+
+export const getIndex = (idImg = 1, direction) => {
+  switch (direction) {
+    case "next":
+      return idImg + 1;
+    case "prev":
+      return idImg - 1;
+    default:
+      return idImg;
+  }
+};

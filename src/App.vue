@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <b-container fluid>
-      <Photography :imageList="imageList" />
+      <Photography :imageList="imageList" v-if="imageList.length" />
+      <h4 v-else class="no-images">No image inserted in assets/img folder</h4>
     </b-container>
   </div>
 </template>
@@ -48,11 +49,17 @@ html,
 body {
   height: 100%;
   background-color: $color1 !important;
+  color: #fff !important;
 }
 
 #app {
   max-width: 1920px;
   width: 100%;
   margin: auto;
+
+  .no-images {
+    text-align: center;
+    margin-top: 2rem;
+  }
 }
 </style>

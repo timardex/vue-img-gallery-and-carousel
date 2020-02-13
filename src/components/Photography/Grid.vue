@@ -20,8 +20,16 @@
 export default {
   props: {
     imageList: Array,
-    changeModalContent: Function,
-    scrollToPos: Function
+    changeModalContent: Function
+  },
+  methods: {
+    scrollToPos(id) {
+      setTimeout(() => {
+        const modalThumbs = document.getElementById("modal-thumbs");
+        let scrollPos = id * 50;
+        modalThumbs.scrollLeft += scrollPos;
+      }, 1000);
+    }
   }
 };
 </script>
