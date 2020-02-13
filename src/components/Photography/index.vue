@@ -47,6 +47,8 @@
 <script>
 import Grid from "@/components/Photography/Grid";
 import Modal from "@/components/Photography/Modal";
+import { categoryFilter, getCat } from "./helpers.js";
+
 export default {
   props: {
     imageList: Array
@@ -57,14 +59,7 @@ export default {
   },
   computed: {
     filteredCategory() {
-      if (this.currentCategory === "All") {
-        return this.imageList;
-      } else {
-        let filteredList = this.imageList.filter(
-          value => value.category === this.currentCategory
-        );
-        return filteredList.map((u, i) => Object.assign({}, u, { id: i + 1 }));
-      }
+      return categoryFilter(this.currentCategory, this.imageList);
     }
   },
   data: () => ({
@@ -72,16 +67,13 @@ export default {
     showModal: false,
     selectedImgSrc: "",
     selectedImgTitle: "",
-    selectedImgId: "",
+    selectedImgId: null,
     selectedCategory: "",
     activeThumb: false
   }),
   methods: {
     getCategories() {
-      let array = this.imageList.map(val => val.category);
-      let unique = [...new Set(array)];
-      unique.unshift("All");
-      return unique;
+      return getCat(this.imageList);
     },
     modalToggle() {
       this.showModal = !this.showModal;
@@ -128,3 +120,14 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
