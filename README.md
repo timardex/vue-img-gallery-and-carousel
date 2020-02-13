@@ -1,6 +1,12 @@
 # vue-img-gallery-and-carousel
 
-## Project setup
+## How does it work?
+Before you use this project you need to insert some `.jpg` images inside `assets/img` folder. The filename of the images should be like this.
+`CategoryName-Title`.jpg
+The code will check for the contents in that folder and will put them into an array and than will list it inside the project.
+CategoryName is important as that will be inserted automaticly into the category filter component.
+
+### Project setup
 ```
 npm install
 ```
@@ -9,16 +15,3 @@ npm install
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
