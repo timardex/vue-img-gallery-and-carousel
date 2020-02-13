@@ -5,13 +5,18 @@
         :src="img.path"
         :title="img.name"
         :id="`thumb-${img.id}`"
+        v-lazy="img.path"
+        fluid
+      />
+      <div
         @click="
           changeModalContent(img);
           scrollToPos(img.id);
         "
-        v-lazy="img.path"
-        fluid
-      />
+        class="info-overlay"
+      >
+        <span>{{ img.name }}</span>
+      </div>
     </div>
   </section>
 </template>
@@ -35,8 +40,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/styles/_variables.scss";
-
 section {
   line-height: 0;
   column-count: 4;
@@ -52,11 +55,24 @@ section {
   }
   .img-container {
     width: 100%;
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in;
+    backface-visibility: hidden;
+    &:hover {
+      transform: scale(1.05);
+      z-index: 2;
+      .info-overlay {
+        opacity: 1;
+      }
+    }
 
     img {
       display: block;
-      cursor: pointer;
       height: auto !important;
+      z-index: 1;
       &[lazy="loading"] {
         width: 50px;
         margin: 1rem auto;
@@ -64,6 +80,34 @@ section {
       &[lazy="loaded"] {
         width: 100% !important;
         margin: auto;
+      }
+    }
+    .info-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      z-index: 2;
+      transition: all 0.3s ease-in;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      span {
+        z-index: 2;
+        color: #fff;
+        font-size: 1.5rem;
+      }
+      &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
       }
     }
   }
