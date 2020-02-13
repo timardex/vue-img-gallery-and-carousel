@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <b-container>
+    <b-container fluid>
       <Photography :imageList="imageList" v-if="imageList.length" />
       <h4 v-else class="no-images">No image inserted in assets/img folder</h4>
     </b-container>

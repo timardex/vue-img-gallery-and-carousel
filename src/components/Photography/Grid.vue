@@ -1,11 +1,11 @@
 <template>
-  <section class="col">
+  <section>
     <div
       v-for="(img, index) in imageList"
       :key="index"
       :style="'background: url(' + img.path + ')'"
       v-lazy:background-image="img.path"
-      class="img-container col-sm-6 col-md-4"
+      class="img-container col"
     >
       <div
         @click="
@@ -40,10 +40,26 @@ export default {
 
 <style lang="scss" scoped>
 section {
+  line-height: 0;
+  column-count: 4;
+  column-gap: 0;
+
+  @media (max-width: 992px) {
+    column-count: 3;
+  }
+
+  @media (max-width: 768px) {
+    column-count: 2;
+  }
+
+  @media (max-width: 500px) {
+    column-count: 1;
+  }
+
   .img-container {
+    width: 100%;
     height: 250px;
     position: relative;
-    margin-top: -6px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -56,6 +72,7 @@ section {
     &:hover {
       transform: scale(1.05);
       z-index: 2;
+
       .info-overlay {
         opacity: 1;
       }
@@ -77,6 +94,7 @@ section {
         color: #fff;
         font-size: 1.5rem;
       }
+
       &:before {
         content: "";
         display: block;
