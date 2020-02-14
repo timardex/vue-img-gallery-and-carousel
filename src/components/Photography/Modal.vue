@@ -118,6 +118,10 @@ export default {
     .actions {
       position: absolute;
       width: 105%;
+      top: 0;
+      bottom: 0;
+      height: 30px;
+      margin: auto;
       span {
         cursor: pointer;
         width: 30px;
