@@ -70,9 +70,6 @@ section {
     background-position: center center !important;
 
     &:hover {
-      transform: scale(1.05);
-      z-index: 2;
-
       .info-overlay {
         opacity: 1;
       }
@@ -81,7 +78,7 @@ section {
       position: absolute;
       width: 100%;
       height: 100%;
-      opacity: 0;
+      opacity: .3;
       z-index: 2;
       transition: all 0.3s ease-in;
       display: flex;
@@ -103,7 +100,7 @@ section {
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, .8);
         z-index: 1;
       }
     }
