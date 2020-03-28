@@ -112,4 +112,9 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
+
+.btn-filter {
+  overflow: auto;
+  white-space: nowrap;
+}
 </style>
