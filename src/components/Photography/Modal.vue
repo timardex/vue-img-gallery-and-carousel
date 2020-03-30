@@ -48,13 +48,34 @@
 <script>
 export default {
   props: {
-    selectedImgSrc: String,
-    selectedImgTitle: String,
-    selectedImgId: Number,
-    imageList: Array,
-    changeModalContent: Function,
-    modalToggle: Function,
-    nextPrevImg: Function
+    selectedImgSrc: {
+      type: String,
+      default: ""
+    },
+    selectedImgTitle: {
+      type: String,
+      default: ""
+    },
+    selectedImgId: {
+      type: Number,
+      default: null
+    },
+    imageList: {
+      type: Array,
+      default: null
+    },
+    changeModalContent: {
+      type: Function,
+      default: null
+    },
+    modalToggle: {
+      type: Function,
+      default: null
+    },
+    nextPrevImg: {
+      type: Function,
+      default: null
+    }
   }
 };
 </script>

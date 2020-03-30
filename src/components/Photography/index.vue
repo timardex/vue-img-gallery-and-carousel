@@ -25,6 +25,12 @@
       <Grid
         :imageList="filteredCategory"
         :changeModalContent="changeModalContent"
+        :modalToggle="modalToggle"
+        :initialList="initialList"
+        :loadMore="loadMore"
+        :imageLeftToLoad="imageLeftToLoad"
+        :initialItem="initialItem"
+        :showSpinner="showSpinner"
       />
 
       <transition name="fade">
@@ -33,7 +39,7 @@
           :selectedImgSrc="selectedImgSrc"
           :selectedImgTitle="selectedImgTitle"
           :selectedImgId="selectedImgId"
-          :imageList="filteredCategory"
+          :imageList="initialList"
           :changeModalContent="changeModalContent"
           :modalToggle="modalToggle"
           :nextPrevImg="nextPrevImg"
@@ -50,7 +56,10 @@ import { categoryFilter, getCat, getIndex } from "./helpers.js";
 
 export default {
   props: {
-    imageList: Array
+    imageList: {
+      type: Array,
+      default: null
+    }
   },
   components: {
     Grid,
@@ -59,6 +68,12 @@ export default {
   computed: {
     filteredCategory() {
       return categoryFilter(this.currentCategory, this.imageList);
+    },
+    initialList() {
+      return this.filteredCategory.slice(0, this.initialItem);
+    },
+    imageLeftToLoad() {
+      return this.filteredCategory.length - this.initialList.length;
     }
   },
   data: () => ({
@@ -68,7 +83,8 @@ export default {
     selectedImgTitle: "",
     selectedImgId: null,
     selectedCategory: "",
-    activeThumb: false
+    initialItem: 8,
+    showSpinner: false
   }),
   methods: {
     getCategories() {
@@ -78,7 +94,6 @@ export default {
       this.showModal = !this.showModal;
     },
     changeModalContent(item) {
-      this.showModal = true;
       this.filteredCategory.map(value => (value.active = false));
       item.active = true;
       this.selectedImgSrc = item.path;
@@ -98,6 +113,13 @@ export default {
       this.selectedImgId = newImg.id;
       this.selectedImgTitle = newImg.name;
       this.selectedCategory = newImg.category;
+    },
+    loadMore() {
+      this.showSpinner = true;
+      setTimeout(() => {
+        this.initialItem = this.initialItem + 8;
+        this.showSpinner = false;
+      }, 2000);
     }
   }
 };
